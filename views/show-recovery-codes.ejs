@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Recovery Codes</title>
+
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        .code-box {
+            font-family: "Courier New", monospace;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-6">
+
+    <div class="bg-white shadow-xl rounded-xl p-8 w-full max-w-xl">
+
+        <h1 class="text-2xl font-bold text-gray-900 mb-4">Save Your Recovery Codes</h1>
+
+        <p class="text-gray-600 mb-4">
+            These recovery codes let you access your account if you lose access to your authenticator app.
+            <span class="font-semibold">This is the only time we will show them.</span>
+        </p>
+
+        <div class="p-4 bg-gray-50 border rounded-lg mb-4">
+            <ul class="grid grid-cols-2 gap-3 code-box text-lg">
+                <% recoveryCodes.forEach(code=> { %>
+                    <li class="p-2 bg-gray-900 shadow rounded text-center">
+                        <%= code %>
+                    </li>
+                    <% }) %>
+            </ul>
+        </div>
+
+        <button onclick="copyCodes()"
+            class="w-full bg-gray-900 text-white py-3 rounded-lg hover:bg-gray-700 transition mb-3">
+            Copy Codes
+        </button>
+
+        <a href="/user/profile"
+            class="block text-center bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-500 transition">
+            Continue
+        </a>
+
+    </div>
+
+    <script>
+        function copyCodes() {
+            const codes = `<%= recoveryCodes.join("\\n") %>`;
+            navigator.clipboard.writeText(codes)
+                .then(() => alert("Recovery codes copied!"))
+                .catch(() => alert("Could not copy codes"));
+        }
+    </script>
+
+</body>
+
+</html>

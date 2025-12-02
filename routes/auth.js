@@ -74,7 +74,7 @@ router.post('/verify-setup-totp', async (req, res) => {
     // clear session temp values and log user in (optional)
     delete req.session.tempTotpSecret;
     delete req.session.authUserId;
-    res.render("show-recovery-codes", { codes })
+    res.render("show-recovery-codes", { recoveryCodes: codes });
 });
 
 // --- Login: show
@@ -173,7 +173,7 @@ async function verifyRecoveryCode(userId, enteredCode) {
 
     const hashed = crypto.createHash("sha256").update(enteredCode).digest("hex");
 
-    const match = user.recoveryCodes.find(
+    const match = user.totp.recoveryCodes.find(
         (c) => c.code === hashed && !c.used
     );
 
@@ -181,8 +181,8 @@ async function verifyRecoveryCode(userId, enteredCode) {
 
     // Mark the used code as used
     await User.updateOne(
-        { _id: userId, "recoveryCodes.code": hashed },
-        { $set: { "recoveryCodes.$.used": true } }
+        { _id: userId, "totp.recoveryCodes.code": hashed },
+        { $set: { "totp.recoveryCodes.$.used": true } }
     );
 
     return true;
