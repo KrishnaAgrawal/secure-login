@@ -1,0 +1,62 @@
+<% title = "Setup 2FA" %>
+
+
+<div class="glass-card p-8 shadow-2xl mx-auto max-w-3xl">
+  <div class="grid md:grid-cols-2 gap-6 items-center">
+    <div class="text-center">
+      <h3 class="text-xl font-semibold mb-3">Scan QR</h3>
+      <% if (typeof qr !== 'undefined' && qr) { %>
+        <img src="<%= qr %>" alt="QR Code" class="mx-auto rounded-lg shadow" />
+      <% } else { %>
+        <div class="p-6 bg-slate-800 rounded">QR Preview Unavailable</div>
+      <% } %>
+
+      <p class="text-sm text-slate-300 mt-3">Open Google Authenticator or Authy and scan the QR. Then enter the 6-digit code below.</p>
+    </div>
+
+    <div>
+      <h3 class="text-xl font-semibold mb-3">Manual secret & verify</h3>
+
+      <label class="label">Manual secret (copyable)</label>
+      <div class="secret-box">
+        <div id="secretDisplay" class="secret-display"><%= secretBase32 %></div>
+        <div class="flex gap-3 mt-3 items-center">
+          <button class="btn-secondary" onclick="copyText(document.getElementById('secretDisplay').innerText, () => { showToast('Copied secret'); })">Copy Secret</button>
+          <a class="text-sm text-slate-300" href="#" onclick="toggleInstructions(event)">How to add manually?</a>
+        </div>
+      </div>
+
+      <div id="instructions" class="mt-3 text-sm text-slate-400 hidden">
+        <ol class="list-decimal ml-5">
+          <li>Open Authenticator app → Add account → Enter a setup key.</li>
+          <li>Use account name: <strong>SecureApp</strong>, type TOTP, and paste the secret.</li>
+        </ol>
+      </div>
+
+      <form action="/auth/verify-setup-totp" method="post" class="mt-6">
+        <label class="label">Enter OTP from app</label>
+        <input name="token" required class="input" inputmode="numeric" placeholder="123456" autocomplete="one-time-code" />
+        <div class="mt-4 flex gap-3 items-center">
+          <button class="btn-primary" type="submit">Verify & Enable 2FA</button>
+          <a class="text-sm text-slate-300 hover:underline" href="/">Skip for now</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleInstructions(e) {
+    e.preventDefault();
+    const el = document.getElementById('instructions');
+    if (!el) return;
+    el.classList.toggle('hidden');
+  }
+  function showToast(msg) {
+    const t = document.createElement('div');
+    t.innerText = msg;
+    t.className = 'fixed bottom-6 right-6 bg-black/70 text-white px-4 py-2 rounded-lg';
+    document.body.appendChild(t);
+    setTimeout(()=> t.remove(), 1400);
+  }
+</script>

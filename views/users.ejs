@@ -1,0 +1,74 @@
+<% title=title %>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center mt-6">
+            <button class="cta bg-amber-600 hover:bg-amber-500" onclick="history.back()">← Back</button>
+        </div>
+    <div class="page-container fade-in">
+        <div class="header-row">
+            <h1 class="page-title">👥 User listing</h1>
+            <input id="searchInput" type="text" placeholder="Search users..." class="search-input" />
+        </div>
+
+        <div class="glass-table-container">
+            <table class="glass-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>User</th>
+                        <th>Email</th>
+                        <th>2FA</th>
+                        <th>Joined</th>
+                    </tr>
+                </thead>
+
+                <tbody id="usersTable">
+                    <% users.forEach((u, index)=> { %>
+                        <tr>
+                            <td>
+                                <%= index + 1 %>
+                            </td>
+
+                            <td class="user-cell">
+                                <div class="avatar">
+                                    <%= u.name.charAt(0).toUpperCase() %>
+                                </div>
+                                <%= u.name %>
+                            </td>
+
+                            <td>
+                                <%= u.email %>
+                            </td>
+
+                            <td>
+                                <% if (u.totp.enabled) { %>
+                                    <span class="badge badge-green">Enabled</span>
+                                    <% } else { %>
+                                        <span class="badge badge-red">Disabled</span>
+                                        <% } %>
+                            </td>
+
+                            <td>
+                                <%= new Date(u.createdAt) %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Search filter
+        const searchInput = document.getElementById("searchInput");
+        const table = document.getElementById("usersTable");
+
+        searchInput.addEventListener("keyup", () => {
+            const filter = searchInput.value.toLowerCase();
+            const rows = table.getElementsByTagName("tr");
+
+            for (let r of rows) {
+                const txt = r.innerText.toLowerCase();
+                r.style.display = txt.includes(filter) ? "" : "none";
+            }
+        });
+    </script>

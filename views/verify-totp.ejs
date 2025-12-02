@@ -1,0 +1,31 @@
+<% title="Verify TOTP" %>
+
+    <div class="glass-card p-8 shadow-xl mx-auto max-w-md text-center">
+        <h2 class="text-2xl font-bold mb-3">Two-Factor Authentication</h2>
+        <p class="text-slate-300 mb-4">Enter the 6-digit code from your authenticator app.</p>
+
+        <% if (typeof error !=='undefined' && error) { %>
+            <div class="bg-red-600 text-white p-3 rounded mb-3">
+                <%= error %>
+            </div>
+        <% } %>
+        
+        <form action="/auth/verify-totp" method="post" class="space-y-4">
+            <label>Enter TOTP Code</label>
+            <input type="text" name="totpCode" class="input text-2xl text-center tracking-widest"
+                placeholder="123456" autocomplete="one-time-code" inputmode="numeric">
+
+            <p>— OR —</p><br/>
+
+            <label class="mt-3">Use Recovery Code</label><br/>
+            <small class="text-sm text-slate-400">If you lost access, use a recovery code (if
+                available).</small>
+            <input type="text" name="recoveryCode" class="input text-2xl text-center tracking-widest"
+                placeholder="8-digit code">
+
+            <div class="flex gap-3 justify-center">
+                <button class="btn-primary" type="submit">Verify</button>
+                <a class="btn-secondary" href="/auth/login">Back</a>
+            </div>
+        </form>
+    </div>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>
+        <%= title || "Secure Login System" %>
+    </title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/users.css" />
+
+    <!-- Confetti lib -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+
+<body class="bg-gradient-to-br from-slate-900 to-slate-800 min-h-screen">
+
+    <main class="min-h-screen flex items-center justify-center px-4 py-10">
+        <div class="w-full max-w-4xl">
+            <%- body %>
+        </div>
+    </main>
+
+    <script>
+        // confetti helper
+        function confettiSuccess() {
+            confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
+        }
+
+        // copy helper
+        function copyText(text, cb) {
+            if (!navigator.clipboard) {
+                const ta = document.createElement('textarea');
+                ta.value = text; document.body.appendChild(ta); ta.select();
+                document.execCommand('copy'); ta.remove(); if (cb) cb(); return;
+            }
+            navigator.clipboard.writeText(text).then(() => cb && cb());
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<% title = "Register" %>
+
+
+<div class="glass-card p-8 shadow-xl mx-auto max-w-xl">
+  <h2 class="text-2xl font-bold mb-4">Create an account</h2>
+
+  <% if (typeof error !== 'undefined' && error) { %>
+    <div class="bg-red-600 text-white p-3 rounded mb-4"><%= error %></div>
+  <% } %>
+
+  <form action="/auth/register" method="post" class="space-y-4">
+    <div>
+      <label class="label">Full name</label>
+      <input name="name" required class="input" placeholder="Jane Doe" />
+    </div>
+
+    <div>
+      <label class="label">Email</label>
+      <input name="email" type="email" required class="input" placeholder="you@example.com" />
+    </div>
+
+    <div>
+      <label class="label">Password</label>
+      <input name="password" type="password" required class="input" placeholder="Strong password" />
+    </div>
+
+    <div class="flex items-center gap-3">
+      <button class="btn-primary" type="submit">Create Account</button>
+      <a class="text-sm text-slate-300 hover:underline" href="/auth/login">Already have an account?</a>
+    </div>
+  </form>
+</div>

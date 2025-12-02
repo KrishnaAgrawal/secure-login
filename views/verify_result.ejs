@@ -1,0 +1,33 @@
+<% title = verified ? 'Success' : 'Failed' %>
+
+<div class="glass-card p-8 shadow-2xl mx-auto max-w-lg text-center">
+  <% if (verified) { %>
+    <script>setTimeout(confettiSuccess, 250)</script>
+    <div class="text-6xl mb-4 text-green-400">✔</div>
+    <h2 class="text-2xl font-bold mb-2">Two-Factor Authentication Enabled</h2>
+    <p class="text-slate-300 mb-4">Save these recovery codes in a safe place — they work only once.</p>
+
+    <% if (Array.isArray(recoveryCodes) && recoveryCodes.length) { %>
+      <div class="bg-slate-900 p-4 rounded mb-4 text-left">
+        <ol class="list-decimal ml-5">
+          <% recoveryCodes.forEach(c => { %>
+            <li class="mb-1 font-mono text-sm"><%= c %></li>
+          <% }) %>
+        </ol>
+      </div>
+
+      <div class="flex justify-center gap-3">
+        <button class="btn-primary" onclick="copyText('<%= recoveryCodes.join(',') %>', () => showToast('Recovery codes copied') )">Copy Codes</button>
+        <a class="btn-secondary" href="/auth/login">Go to Login</a>
+      </div>
+    <% } else { %>
+      <a class="btn-primary" href="/auth/login">Go to Login</a>
+    <% } %>
+
+  <% } else { %>
+    <div class="text-6xl mb-4 text-red-400">✘</div>
+    <h2 class="text-2xl font-bold mb-2">Verification Failed</h2>
+    <p class="text-slate-300 mb-4"><%= message || 'Invalid code' %></p>
+    <a class="btn-secondary" href="/auth/setup-totp">Back to setup</a>
+  <% } %>
+</div>
