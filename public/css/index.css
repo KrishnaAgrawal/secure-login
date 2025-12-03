@@ -9,7 +9,7 @@ body {
     width: 100%;
     max-width: 1000px;
     margin: auto;
-    padding-top: 40px;
+    padding-top: 0px;
     padding-left: 180px;
     padding-right: 180px;
 }
@@ -118,6 +118,7 @@ button:hover {
 .feature-item:hover .tooltip {
     display: block;
     opacity: 1;
+    z-index: 999;
 }
 
 .cardMargin{
