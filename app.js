@@ -77,7 +77,7 @@ app.use('/admin', adminRoutes);
 // === Demo routes (replace with your real routes) ===
 // Home
 app.get('/', (req, res) => {
-  res.render('index', { title: 'Welcome' });
+  res.render('index', { fullWidth: true, title: 'Welcome' });
 });
 
 // error handler (simple)

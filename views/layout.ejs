@@ -20,9 +20,9 @@
 </head>
 
 <body class="bg-gradient-to-br from-slate-900 to-slate-800 min-h-screen">
-
+    <% const isFullWidth = typeof fullWidth !== "undefined" ? fullWidth : false; %>
     <main class="min-h-screen flex items-center justify-center px-4 py-10">
-        <div class="w-full max-w-4xl">
+        <div class="<%= isFullWidth ? 'w-full max-w-[1600px]' : 'w-full max-w-4xl' %>">
             <%- body %>
         </div>
     </main>

@@ -130,7 +130,6 @@ router.post('/verify-totp', async (req, res) => {
         if (!ok) return res.render('verify-totp', { error: 'Invalid recovery code' });
         
         req.session.user = { id: user._id, email: user.email };
-        delete req.session.authUserId;
         res.redirect('/user/profile');
     } else if (totpCode && totpCode.trim() != '') {
         let secret;
@@ -140,7 +139,6 @@ router.post('/verify-totp', async (req, res) => {
         if (!ok) return res.render('verify-totp', { error: 'Invalid TOTP code' });
         
         req.session.user = { id: user._id, email: user.email };
-        delete req.session.authUserId;
         res.redirect('/user/profile');
     }
 });

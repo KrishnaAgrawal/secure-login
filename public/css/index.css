@@ -1,0 +1,130 @@
+body {
+    margin: 0;
+    background: #0d0d0d;
+    color: white;
+    font-family: "Poppins", sans-serif;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1400px;
+    margin: auto;
+    padding-top: 40px;
+    padding-left: 180px;
+    padding-right: 180px;
+}
+
+/* Title */
+.title {
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Main layout */
+.main {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+}
+
+/* Cards */
+.card {
+    background: #151515;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+    transition: 0.25s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.card h2 {
+    margin-top: 0;
+    font-size: 26px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    background: #222;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #4b8bff;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #3a74d6;
+}
+
+/* Features */
+.features-box {
+    background: #151515;
+    border-radius: 18px;
+    padding: 25px;
+}
+
+.feature-item {
+    margin-bottom: 12px;
+    padding: 12px;
+    background: #1c1c1c;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+    position: relative;
+}
+
+.feature-item:hover {
+    background: #262626;
+}
+
+.tooltip {
+    display: none;
+    position: absolute;
+    left: 105%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #333;
+    padding: 12px;
+    border-radius: 10px;
+    width: 220px;
+    font-size: 13px;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+.feature-item:hover .tooltip {
+    display: block;
+    opacity: 1;
+}
+
+.cardMargin{
+    margin-top: 150px;
+}
+
+.cta {
+    padding-left: 18px;
+    padding-right: 18px;
+}

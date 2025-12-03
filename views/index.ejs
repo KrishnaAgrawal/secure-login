@@ -1,18 +1,88 @@
-<% title = "Welcome" %>
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Login System</title>
 
-<div class="glass-card p-8 shadow-xl mx-auto">
-  <div class="flex items-center justify-between mb-6">
-    <h1 class="text-2xl font-bold">Secure Login Demo</h1>
-    <span class="text-sm text-slate-300">TOTP • JWT • Rate-limit</span>
-  </div>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <p class="text-slate-300 mb-6">Secure registration with TOTP (Google Authenticator). Try the demo or create an account.</p>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/index.css" />
+</head>
 
-  <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-    <span class=""></span>
-    <a class="cta" href="/auth/register">Register</a>
-    <a class="cta bg-amber-600 hover:bg-amber-500" href="/auth/login">Login</a>
-    <span class=""></span>
-  </div>
-</div>
+<body>
+    <div class="wrapper">
+
+        <div class="title">🔐 Secure Login System</div>
+
+        <div class="main">
+
+            <!-- LEFT: Login / Register -->
+            <div>
+
+                <!-- Register -->
+
+                <div class="card cardMargin text-center">
+                    <a class="cta bg-amber-600 hover:bg-amber-500" href="/auth/register">Register</a>
+                    </form>
+                </div>
+
+                <br>
+
+                <!-- Login -->
+                <div class="card text-center">
+                    <a class="cta bg-amber-600 hover:bg-amber-500" href="/auth/login">Login</a>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- RIGHT: Features -->
+            <div class="features-box">
+                <h2>Features</h2>
+
+                <div class="feature-item">JWT
+                    <div class="tooltip">Secure JSON Web Tokens for session authentication.</div>
+                </div>
+
+                <div class="feature-item">Global Rate Limiting
+                    <div class="tooltip">Protect the server by limiting total requests per minute.</div>
+                </div>
+
+                <div class="feature-item">Login Attempt Limiter
+                    <div class="tooltip">Blocks brute-force attempts automatically.</div>
+                </div>
+
+                <div class="feature-item">CORS Enabled
+                    <div class="tooltip">Controls which domains can access your API.</div>
+                </div>
+
+                <div class="feature-item">Helmet Security
+                    <div class="tooltip">Prevents common web vulnerabilities.</div>
+                </div>
+
+                <div class="feature-item">Password Hashing
+                    <div class="tooltip">Secure bcrypt hashing for user credentials.</div>
+                </div>
+
+                <div class="feature-item">2-Factor Authentication
+                    <div class="tooltip">TOTP-based two-step protection.</div>
+                </div>
+
+                <div class="feature-item">Recovery Codes
+                    <div class="tooltip">Use backup codes when TOTP device is lost.</div>
+                </div>
+
+                <div class="feature-item">AES Encryption
+                    <div class="tooltip">Securely encrypt + decrypt sensitive data.</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
