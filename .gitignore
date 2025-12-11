@@ -42,7 +42,6 @@ bower_components/
 .env
 
 # npm package lock files
-package-lock.json
 yarn.lock
 
 # Optional ESLint cache
